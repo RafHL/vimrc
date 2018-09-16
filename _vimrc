@@ -40,7 +40,7 @@ set laststatus=2          " Always shows status bar, even with only one window
 set textwidth=92          " Width 92, unless next word makes it go past 92
 set guifont=Consolas:h10  " Consolas as font, size 12
 set guioptions-=r         " Remove scroll bar
-"" ADD TO LINUX VIMRC
+set columns=100           " Set initial column width
 set cursorline            " Highlight the current line
 
 " To link back to PowerShell
