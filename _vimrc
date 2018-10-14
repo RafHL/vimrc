@@ -1,11 +1,12 @@
 " This is my attempt at making a vimrc on 7/5/18 2:36 AM using
 " gougblack.io/words/a-good-vimrc.html as a guide
 
-" Last Modified: 10-13-2018 23:42
+" Last Modified: 10-14-2018 00:34
 
-" ---------------------------------------------------------
+" This is a one '1', as in true
+set modelines=1
 
-" UI/FUNCTIONS
+" UI/FUNCTIONS {{{
 " Attempts to determine the type of a file based on its name and possibly its
 " contents. Use this to allow intelligent auto-indenting for each filetype,
 " and for plugins that are filetype specific
@@ -17,8 +18,8 @@ set omnifunc=syntaxcomplete#Complete
 " Allows use of windows shortcuts like ctrl + V
 source $VIMRUNTIME/mswin.vim
 behave mswin
-
-" COLORS
+" }}}
+" COLORS {{{
 colorscheme badwolf       " I like badwolf and lucius
 syntax enable             " Enable syntax coloring
 
@@ -32,8 +33,8 @@ set confirm               " Prompts for save if command used requires it
 set visualbell            " Show a visible bell instead of error beep
 set mouse=a               " Allow use of mouse for all modes
 set cmdheight=2           " Makes space for messages bigger
-
-" UI CONFIG
+" }}}
+" UI CONFIG {{{
 set number                " Shows line numbers
 set showcmd               " Shows last inputted command in bottom bar
 filetype indent off       " Loads ~/.vim/indent/<some language>/vim files with indentation files
@@ -52,28 +53,33 @@ set cursorline            " Highlight the current line
 set shell=powershell
 set shellcmdflag=-command
 
-" SEARCHING
+" Spaces & tabs
+set tabstop=4             " Visible spaces per tab
+set softtabstop=4         " # of spaces for tab while editing
+set expandtab             " Makes tabs into spaces
+set backspace=indent,eol,start " Allows backspace over autoindent linebreaks and start of insert action
+set autoindent            " Keeps same indentation on enter if no file specific indenting is enabled
+" }}}
+" SEARCHING {{{
 set incsearch             " Search as characters are entered
 set hlsearch              " Highlight matches
 set ignorecase            " Case insensitive searches unless uppercase used
 set smartcase
-
-" FOLDING
+" }}}
+" FOLDING {{{
 set foldenable            " Enable folding
 set foldlevelstart=10     " Open most folds by default
 set foldnestmax=10        " Allows 10 nested folds max
 set foldmethod=indent     " fold based on indent level
 
-
 "" Makes trailing spaces and tabs visible. Thanks to guckes.net
 set list
 set lcs=tab:»·
 set lcs+=trail:·
-" Removes vertical split characters v
+" Removes vertical split characters v end space needed
 set fillchars+=vert:\ 
-" ---------------------------------------------------------
-
-" KEYS
+" }}}
+" KEYS {{{
 " MOVEMENT
 " move vertically by visual line
 nnoremap j gj
@@ -88,11 +94,14 @@ nnoremap <space> za
 " Remove all trailing whitespace by pressing F5
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 " Make { automatically set up cursor and writing position for same-line brace coding style
+
 inoremap {<space> {<CR>}<C-o>O<tab>
 " Make ( automatically set up cursor and writing position for same-line brace coding style
 inoremap (<space> (<CR>)<C-o>O<tab>
-" Map ctrl space to omni function
+" Map shift space to omni function
 inoremap <S-space> <C-x><C-o>
+" Map ctrl \ to local completion
+inoremap <C-\> <C-x><C-p>
 
 " LEADER SHORTCUTS
 " leader is \
@@ -107,10 +116,6 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader><space> :nohlsearch<CR>
 " Copy all text by pressing \y, aka super-yank
 nnoremap <leader>y gg V G y<CR>
+" }}}
 
-" SPACES & TABS
-set tabstop=4             " Visible spaces per tab
-set softtabstop=4         " # of spaces for tab while editing
-set expandtab             " Makes tabs into spaces
-set backspace=indent,eol,start " Allows backspace over autoindent linebreaks and start of insert action
-set autoindent            " Keeps same indentation on enter if no file specific indenting is enabled
+" vim:foldmethod=marker:foldlevel=0
