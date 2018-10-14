@@ -1,13 +1,18 @@
 " This is my attempt at making a vimrc on 7/5/18 2:36 AM using
 " gougblack.io/words/a-good-vimrc.html as a guide
 
+" Last Modified: 10-13-2018 23:42
+
 " ---------------------------------------------------------
 
 " UI/FUNCTIONS
 " Attempts to determine the type of a file based on its name and possibly its
 " contents. Use this to allow intelligent auto-indenting for each filetype,
 " and for plugins that are filetype specific
-filetype indent plugin on 
+filetype indent plugin on
+" Allows omni complete to work
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
 
 " Allows use of windows shortcuts like ctrl + V
 source $VIMRUNTIME/mswin.vim
@@ -24,9 +29,9 @@ syntax enable             " Enable syntax coloring
 set hidden
 
 set confirm               " Prompts for save if command used requires it
-set visualbell            " Show a visible bell instead of error beep 
+set visualbell            " Show a visible bell instead of error beep
 set mouse=a               " Allow use of mouse for all modes
-set cmdheight=2          " Makes space for messages bigger
+set cmdheight=2           " Makes space for messages bigger
 
 " UI CONFIG
 set number                " Shows line numbers
@@ -66,10 +71,9 @@ set lcs=tab:»·
 set lcs+=trail:·
 " Removes vertical split characters v
 set fillchars+=vert:\ 
-
 " ---------------------------------------------------------
 
-" KEYS 
+" KEYS
 " MOVEMENT
 " move vertically by visual line
 nnoremap j gj
@@ -77,15 +81,18 @@ nnoremap k gk
 " highlight last inserted text
 nnoremap gV `[v`]
 " Space opens and closes folds
-nnoremap <space> za 
-" Turn off search highlight
-nnoremap <leader><space> :nohlsearch<CR>
+nnoremap <space> za
+
+"GENERAL PURPOSE
 " Thanks to Christopher Bottoms
 " Remove all trailing whitespace by pressing F5
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
-" Copy all text by pressing \y, aka super-yank
-nnoremap <leader>y gg V G y<CR>
-
+" Make { automatically set up cursor and writing position for same-line brace coding style
+inoremap {<space> {<CR>}<C-o>O<tab>
+" Make ( automatically set up cursor and writing position for same-line brace coding style
+inoremap (<space> (<CR>)<C-o>O<tab>
+" Map ctrl space to omni function
+inoremap <S-space> <C-x><C-o>
 
 " LEADER SHORTCUTS
 " leader is \
@@ -96,6 +103,10 @@ nnoremap <leader>s :mksession<CR>
 " Edit vimrc and load vimrc bindings
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
+" Turn off search highlight
+nnoremap <leader><space> :nohlsearch<CR>
+" Copy all text by pressing \y, aka super-yank
+nnoremap <leader>y gg V G y<CR>
 
 " SPACES & TABS
 set tabstop=4             " Visible spaces per tab
