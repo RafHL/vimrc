@@ -58,7 +58,6 @@ set shiftwidth=4          " Make > indent by 4
 set expandtab             " Makes tabs into spaces
 set backspace=indent,eol,start " Allows backspace over autoindent linebreaks and start of insert action
 set autoindent            " Keeps same indentation on enter if no file specific indenting is enabled
-set smartindent
 
 "" Makes trailing spaces and tabs visible. Thanks to guckes.net
 set list
@@ -103,6 +102,12 @@ nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 inoremap <C-]> <C-x><C-o>
 " Map ctrl \ to local completion
 inoremap <C-\> <C-x><C-p>
+" Automatic indentation and matching (
+inoremap (<CR> (<CR>)<C-o>O<Tab>
+" Automatic indentation and matching {
+inoremap {<CR> {<CR>}<C-o>O<Tab>
+" Automatic indentation and matching [
+inoremap [<CR> [<CR>]<C-o>O<Tab>
 
 " LEADER SHORTCUTS
 " leader is \
