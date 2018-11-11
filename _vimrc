@@ -1,7 +1,7 @@
 " This is my attempt at making a vimrc on 7/5/18 2:36 AM using
 " gougblack.io/words/a-good-vimrc.html as a guide
 
-" Last Modified: 10-14-2018 00:34
+" Last Modified: 10-26-2018 00:04
 
 " UI/FUNCTIONS {{{
 " Attempts to determine the type of a file based on its name and possibly its
@@ -17,7 +17,13 @@ source $VIMRUNTIME/mswin.vim
 behave mswin
 " }}}
 " COLORS {{{
-colorscheme badwolf       " I like badwolf and lucius
+if has('gui_running')
+    " When in gvim use:
+    colorscheme badwolf   " I like badwolf and lucius
+else
+    " When in terminal
+    colorscheme noctu     " 16 bit colorscheme for powershell or vi/vim
+endif
 syntax enable             " Enable syntax coloring
 
 " It hides buffers instead of closing them. This means that you can have unwritten...
@@ -113,8 +119,14 @@ inoremap [<CR> [<CR>]<C-o>O<Tab>
 " leader is \
 " jk is escape
 inoremap jk <esc>
-" Save session
-nnoremap <leader>s :mksession<CR>
+" Save session (Super save)
+nnoremap <leader>s :mksession! ~/.vim_session<CR>
+" Save session locally
+nnoremap <leader>S :mksession! ./.vim_session<CR>
+" Restore session (Super load)
+nnoremap <leader>l :source ~/.vim_session<CR>
+" Restore session locally
+nnoremap <leader>L :source ./.vim_session<CR>
 " Edit vimrc and load vimrc bindings
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
@@ -122,6 +134,11 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader><space> :nohlsearch<CR>
 " Copy all text by pressing \y, aka super-yank
 nnoremap <leader>y gg V G y<CR>
+" highlight all text by pressing \h
+nnoremap <leader>h gg V G<CR>
+
+" Remove cut from windows so that decrementing alphanumerics works
+vunmap <C-X>
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0
