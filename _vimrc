@@ -105,9 +105,9 @@ nnoremap <space> za
 " Remove all trailing whitespace by pressing F5
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 " Map ctrl | to omni function
-inoremap <C-]> <C-x><C-o>
+inoremap <C-;> <C-x><C-o>
 " Map ctrl \ to local completion
-inoremap <C-\> <C-x><C-p>
+inoremap <C-'> <C-x><C-p>
 " Automatic indentation and matching (
 inoremap (<CR> (<CR>)<C-o>O<Tab>
 " Automatic indentation and matching {
@@ -116,7 +116,8 @@ inoremap {<CR> {<CR>}<C-o>O<Tab>
 inoremap [<CR> [<CR>]<C-o>O<Tab>
 
 " LEADER SHORTCUTS
-" leader is \
+" leader is ;
+let mapleader=";"
 " jk is escape
 inoremap jk <esc>
 " Save session (Super save)
@@ -134,11 +135,22 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader><space> :nohlsearch<CR>
 " Copy all text by pressing \y, aka super-yank
 nnoremap <leader>y gg V G y<CR>
-" highlight all text by pressing \h
+" Highlight all text by pressing \h
 nnoremap <leader>h gg V G<CR>
+" Go to next buffer using leader n
+nnoremap <leader>n :bn<CR>
+" Go to previous buffer using leader p
+nnoremap <leader>p :bp<CR>
+" Delete buffer using leader d
+nnoremap <leader>d :bd<CR>
+" Make all buffers into tabs
+nnoremap <leader>t :tab ball<CR>
 
 " Remove cut from windows so that decrementing alphanumerics works
 vunmap <C-X>
+" Remove select all from windows so that incrementing alphanumerics works
+unmap <C-A>
+
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0
