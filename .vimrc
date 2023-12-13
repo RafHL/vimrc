@@ -196,3 +196,4 @@ inoremap [<CR> [<CR>]<C-o>O<Tab>
 
 " For status line:
 "set rtp+=/home/rafe/Downloads/powerline/powerline/bindings/vim
+
